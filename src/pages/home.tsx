@@ -45,10 +45,10 @@ export function HomePage() {
           <Badge variant="secondary">Template</Badge>
           <Badge variant="success">Ready to use</Badge>
         </div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground">
+        <h1 className="text-foreground text-4xl font-bold tracking-tight">
           React + TypeScript + Tailwind v4
         </h1>
-        <p className="max-w-xl text-lg text-muted-foreground">
+        <p className="text-muted-foreground max-w-xl text-lg">
           A fully-featured frontend starter. Everything wired up — routing, data fetching, dark
           mode, components, tests, and Docker support.
         </p>
@@ -56,7 +56,7 @@ export function HomePage() {
 
       {/* Buttons */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Buttons</h2>
+        <h2 className="text-foreground text-xl font-semibold">Buttons</h2>
         <div className="flex flex-wrap gap-3">
           <Button>Default</Button>
           <Button variant="secondary">Secondary</Button>
@@ -79,7 +79,7 @@ export function HomePage() {
 
       {/* Badges */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Badges</h2>
+        <h2 className="text-foreground text-xl font-semibold">Badges</h2>
         <div className="flex flex-wrap gap-3">
           <Badge>Default</Badge>
           <Badge variant="secondary">Secondary</Badge>
@@ -92,7 +92,7 @@ export function HomePage() {
 
       {/* Spinners */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Spinners</h2>
+        <h2 className="text-foreground text-xl font-semibold">Spinners</h2>
         <div className="flex items-center gap-6">
           <Spinner size="sm" />
           <Spinner size="md" />
@@ -102,7 +102,7 @@ export function HomePage() {
 
       {/* Cards */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Cards</h2>
+        <h2 className="text-foreground text-xl font-semibold">Cards</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader>
@@ -110,7 +110,7 @@ export function HomePage() {
               <CardDescription>With header and content</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Cards support header, content, and footer sections out of the box.
               </p>
             </CardContent>
@@ -121,7 +121,7 @@ export function HomePage() {
               <CardDescription>Includes action buttons</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 The footer area is perfect for CTAs or secondary actions.
               </p>
             </CardContent>
@@ -138,7 +138,7 @@ export function HomePage() {
               <CardDescription>Extend via className</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Any component accepts a <code className="font-mono text-xs">className</code> prop
                 for one-off customisation.
               </p>
@@ -149,7 +149,7 @@ export function HomePage() {
 
       {/* Input */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Input</h2>
+        <h2 className="text-foreground text-xl font-semibold">Input</h2>
         <div className="max-w-sm space-y-4">
           <Input
             label="Username"
@@ -173,7 +173,7 @@ export function HomePage() {
 
       {/* Toasts */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Toasts</h2>
+        <h2 className="text-foreground text-xl font-semibold">Toasts</h2>
         <div className="flex flex-wrap gap-3">
           <Button
             variant="outline"
@@ -198,7 +198,9 @@ export function HomePage() {
           </Button>
           <Button
             variant="outline"
-            onClick={() => toast.warning('Warning', { description: 'Please review before proceeding.' })}
+            onClick={() =>
+              toast.warning('Warning', { description: 'Please review before proceeding.' })
+            }
           >
             <TriangleAlert className="h-4 w-4 text-amber-500" />
             Warning
@@ -226,7 +228,7 @@ export function HomePage() {
 
       {/* Dialog */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Dialog</h2>
+        <h2 className="text-foreground text-xl font-semibold">Dialog</h2>
         <div className="flex gap-3">
           <Dialog>
             <DialogTrigger asChild>
@@ -245,10 +247,7 @@ export function HomePage() {
                   <Button variant="outline">Cancel</Button>
                 </DialogClose>
                 <DialogClose asChild>
-                  <Button
-                    variant="destructive"
-                    onClick={() => toast.error('Account deleted')}
-                  >
+                  <Button variant="destructive" onClick={() => toast.error('Account deleted')}>
                     Delete account
                   </Button>
                 </DialogClose>

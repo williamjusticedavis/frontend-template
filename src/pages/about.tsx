@@ -20,8 +20,8 @@ export function AboutPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">About this template</h1>
-        <p className="mt-2 text-muted-foreground">
+        <h1 className="text-foreground text-3xl font-bold tracking-tight">About this template</h1>
+        <p className="text-muted-foreground mt-2">
           A production-ready React starter with batteries included. Clone, install, and build.
         </p>
       </div>
@@ -41,7 +41,7 @@ export function AboutPage() {
             {stack.map(({ name, description, variant }) => (
               <div key={name} className="flex flex-col items-start gap-1">
                 <Badge variant={variant}>{name}</Badge>
-                <span className="text-xs text-muted-foreground">{description}</span>
+                <span className="text-muted-foreground text-xs">{description}</span>
               </div>
             ))}
           </div>
@@ -60,10 +60,10 @@ export function AboutPage() {
             { step: '4', text: 'Run bun run dev' },
           ].map(({ step, text }) => (
             <div key={step} className="flex items-center gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+              <span className="bg-primary text-primary-foreground flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold">
                 {step}
               </span>
-              <span className="text-sm text-foreground">{text}</span>
+              <span className="text-foreground text-sm">{text}</span>
             </div>
           ))}
         </CardContent>

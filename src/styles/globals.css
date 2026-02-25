@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* ─── Dark mode: class-based toggle ─────────────────────────────────────── */
 @variant dark (&:where(.dark, .dark *));
@@ -57,7 +57,9 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
     transition:
       background-color 0.2s ease,
       color 0.2s ease;

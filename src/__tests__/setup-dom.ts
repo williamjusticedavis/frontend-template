@@ -66,7 +66,15 @@ for (const key of BROWSER_GLOBALS) {
 // own internal code (e.g. SelectorParser) accesses them via `this.window.SyntaxError`.
 // Patch them back so querySelectorAll and similar APIs work correctly.
 const win = happyWindow as unknown as Record<string, unknown>
-for (const name of ['Error','EvalError','RangeError','ReferenceError','SyntaxError','TypeError','URIError']) {
+for (const name of [
+  'Error',
+  'EvalError',
+  'RangeError',
+  'ReferenceError',
+  'SyntaxError',
+  'TypeError',
+  'URIError',
+]) {
   if (win[name] === undefined) {
     win[name] = globalThis[name as keyof typeof globalThis]
   }

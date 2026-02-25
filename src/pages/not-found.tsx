@@ -5,13 +5,13 @@ import { Button } from '@/components/ui/button'
 export function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center gap-6 py-24 text-center">
-      <div className="rounded-full bg-muted p-6">
-        <SearchX className="h-12 w-12 text-muted-foreground" />
+      <div className="bg-muted rounded-full p-6">
+        <SearchX className="text-muted-foreground h-12 w-12" />
       </div>
       <div>
-        <h1 className="text-7xl font-bold tracking-tight text-foreground">404</h1>
-        <p className="mt-2 text-xl font-semibold text-foreground">Page not found</p>
-        <p className="mt-2 max-w-sm text-muted-foreground">
+        <h1 className="text-foreground text-7xl font-bold tracking-tight">404</h1>
+        <p className="text-foreground mt-2 text-xl font-semibold">Page not found</p>
+        <p className="text-muted-foreground mt-2 max-w-sm">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
       </div>

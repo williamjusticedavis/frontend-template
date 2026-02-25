@@ -29,5 +29,5 @@ export default defineConfig(
   },
   // Triple-slash reference directives are legitimate in .d.ts type-declaration files
   { files: ['**/*.d.ts'], rules: { '@typescript-eslint/triple-slash-reference': 'off' } },
-  prettierConfig,
+  prettierConfig
 )

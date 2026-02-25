@@ -16,7 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            className="text-foreground text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             {label}
           </label>
@@ -26,10 +26,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           type={type}
           className={cn(
-            'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm',
+            'border-input flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm',
             'placeholder:text-muted-foreground',
             'transition-colors',
-            'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
+            'focus-visible:ring-ring focus-visible:ring-1 focus-visible:outline-none',
             'disabled:cursor-not-allowed disabled:opacity-50',
             error && 'border-destructive focus-visible:ring-destructive',
             className
@@ -39,12 +39,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && (
-          <p id={`${inputId}-error`} className="text-xs text-destructive">
+          <p id={`${inputId}-error`} className="text-destructive text-xs">
             {error}
           </p>
         )}
         {hint && !error && (
-          <p id={`${inputId}-hint`} className="text-xs text-muted-foreground">
+          <p id={`${inputId}-hint`} className="text-muted-foreground text-xs">
             {hint}
           </p>
         )}

@@ -4,19 +4,19 @@ A production-ready React + TypeScript frontend starter. Clone it and start build
 
 ## Stack
 
-| Layer | Library |
-|---|---|
-| Runtime & tests | [Bun](https://bun.sh) |
-| UI | [React 19](https://react.dev) + TypeScript |
-| Build | [Vite 6](https://vitejs.dev) |
-| Routing | [TanStack Router v1](https://tanstack.com/router) (file-based) |
-| Data fetching | [TanStack Query v5](https://tanstack.com/query) |
-| Styling | [Tailwind CSS v4](https://tailwindcss.com) |
-| Icons | [Lucide React](https://lucide.dev) |
-| Toasts | [Sonner](https://sonner.emilkowal.ski) |
-| Modals | [Radix UI Dialog](https://www.radix-ui.com/primitives/docs/components/dialog) |
-| Linting | ESLint 9 (flat config) + TypeScript ESLint |
-| Formatting | Prettier + prettier-plugin-tailwindcss |
+| Layer           | Library                                                                       |
+| --------------- | ----------------------------------------------------------------------------- |
+| Runtime & tests | [Bun](https://bun.sh)                                                         |
+| UI              | [React 19](https://react.dev) + TypeScript                                    |
+| Build           | [Vite 6](https://vitejs.dev)                                                  |
+| Routing         | [TanStack Router v1](https://tanstack.com/router) (file-based)                |
+| Data fetching   | [TanStack Query v5](https://tanstack.com/query)                               |
+| Styling         | [Tailwind CSS v4](https://tailwindcss.com)                                    |
+| Icons           | [Lucide React](https://lucide.dev)                                            |
+| Toasts          | [Sonner](https://sonner.emilkowal.ski)                                        |
+| Modals          | [Radix UI Dialog](https://www.radix-ui.com/primitives/docs/components/dialog) |
+| Linting         | ESLint 9 (flat config) + TypeScript ESLint                                    |
+| Formatting      | Prettier + prettier-plugin-tailwindcss                                        |
 
 ## Getting started
 
@@ -65,10 +65,10 @@ docker compose --profile dev up dev
 
 All variables are optional — the defaults work without a `.env` file.
 
-| Variable | Default (dev) | Default (prod) | Description |
-|---|---|---|---|
-| `VITE_API_URL` | `http://localhost:8000` | `''` (same origin) | Backend API base URL used by `src/lib/api.ts` |
-| `VITE_BASE_PATH` | `/` | `/` | URL sub-path the app is served from (e.g. `/template`) |
+| Variable         | Default (dev)           | Default (prod)     | Description                                            |
+| ---------------- | ----------------------- | ------------------ | ------------------------------------------------------ |
+| `VITE_API_URL`   | `http://localhost:8000` | `''` (same origin) | Backend API base URL used by `src/lib/api.ts`          |
+| `VITE_BASE_PATH` | `/`                     | `/`                | URL sub-path the app is served from (e.g. `/template`) |
 
 `src/lib/config.ts` reads these at build time and exports them as `config.apiUrl` and `config.basePath`. Import from there instead of reading `import.meta.env` directly.
 

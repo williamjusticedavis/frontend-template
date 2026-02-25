@@ -6,18 +6,13 @@ export type ButtonVariant = 'default' | 'secondary' | 'outline' | 'ghost' | 'des
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon'
 
 const variantClasses: Record<ButtonVariant, string> = {
-  default:
-    'bg-primary text-primary-foreground shadow hover:opacity-90',
-  secondary:
-    'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+  default: 'bg-primary text-primary-foreground shadow hover:opacity-90',
+  secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
   outline:
     'border border-border bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground',
-  ghost:
-    'hover:bg-accent hover:text-accent-foreground',
-  destructive:
-    'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
-  link:
-    'text-primary underline-offset-4 hover:underline',
+  ghost: 'hover:bg-accent hover:text-accent-foreground',
+  destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+  link: 'text-primary underline-offset-4 hover:underline',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -41,8 +36,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         className={cn(
-          'inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          'ring-offset-background inline-flex cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-colors',
+          'focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
           'disabled:pointer-events-none disabled:opacity-50',
           '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
           variantClasses[variant],
