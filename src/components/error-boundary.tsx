@@ -1,3 +1,5 @@
+// Error boundaries require class components; class components don't support Fast Refresh.
+/* eslint-disable react-refresh/only-export-components */
 import { Component, type ErrorInfo, type ReactNode } from 'react'
 
 interface Props {

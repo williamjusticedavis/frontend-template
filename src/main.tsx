@@ -2,8 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { Toaster } from 'sonner'
-import { ThemeProvider, useTheme } from '@/context/theme-context'
+import { ThemeProvider } from '@/context/theme-context'
+import { ToasterWithTheme } from '@/components/toaster'
 import { queryClient } from '@/lib/query-client'
 import { config } from '@/lib/config'
 import { routeTree } from './routeTree.gen'
@@ -21,11 +21,6 @@ declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
   }
-}
-
-function ToasterWithTheme() {
-  const { resolvedTheme } = useTheme()
-  return <Toaster theme={resolvedTheme} richColors closeButton position="top-right" />
 }
 
 createRoot(document.getElementById('root')!).render(
