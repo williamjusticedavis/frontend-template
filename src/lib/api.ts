@@ -1,6 +1,7 @@
 import { ApiError } from './query-client'
+import { config } from './config'
 
-const BASE_URL = import.meta.env.VITE_API_URL ?? ''
+const BASE_URL = config.apiUrl
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${BASE_URL}${path}`, {

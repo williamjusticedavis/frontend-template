@@ -12,10 +12,10 @@ interface State {
 
 function DefaultFallback({ error, onReset }: { error?: Error; onReset: () => void }) {
   return (
-    <div className="flex min-h-[400px] flex-col items-center justify-center gap-4 p-8 text-center">
-      <div className="rounded-full bg-destructive/10 p-4">
+    <div className="flex min-h-100 flex-col items-center justify-center gap-4 p-8 text-center">
+      <div className="bg-destructive/10 rounded-full p-4">
         <svg
-          className="h-8 w-8 text-destructive"
+          className="text-destructive h-8 w-8"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -29,14 +29,12 @@ function DefaultFallback({ error, onReset }: { error?: Error; onReset: () => voi
         </svg>
       </div>
       <div>
-        <h2 className="text-xl font-semibold text-foreground">Something went wrong</h2>
-        {error && (
-          <p className="mt-1 max-w-sm text-sm text-muted-foreground">{error.message}</p>
-        )}
+        <h2 className="text-foreground text-xl font-semibold">Something went wrong</h2>
+        {error && <p className="text-muted-foreground mt-1 max-w-sm text-sm">{error.message}</p>}
       </div>
       <button
         onClick={onReset}
-        className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+        className="bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90"
       >
         Try again
       </button>
@@ -64,9 +62,7 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        this.props.fallback ?? (
-          <DefaultFallback error={this.state.error} onReset={this.reset} />
-        )
+        this.props.fallback ?? <DefaultFallback error={this.state.error} onReset={this.reset} />
       )
     }
     return this.props.children

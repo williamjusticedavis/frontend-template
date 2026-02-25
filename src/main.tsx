@@ -5,6 +5,7 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
 import { ThemeProvider, useTheme } from '@/context/theme-context'
 import { queryClient } from '@/lib/query-client'
+import { config } from '@/lib/config'
 import { routeTree } from './routeTree.gen'
 import './styles/globals.css'
 
@@ -12,6 +13,7 @@ const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
+  basepath: config.basePath,
 })
 
 // Register the router for type safety across the app
