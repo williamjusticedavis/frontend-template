@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { api } from '@/lib/api'
-import { getAccessToken, setAccessToken } from '@/lib/auth-token'
+import { setAccessToken } from '@/lib/auth-token'
 
 const REFRESH_TOKEN_KEY = 'refresh_token'
 
@@ -71,10 +71,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const register = useCallback(async (email: string, password: string) => {
-    const { user, accessToken, refreshToken } = await api.post<AuthResponse>(
-      '/api/auth/register',
-      { email, password }
-    )
+    const { user, accessToken, refreshToken } = await api.post<AuthResponse>('/api/auth/register', {
+      email,
+      password,
+    })
     saveTokens(accessToken, refreshToken)
     setUser(user)
   }, [])
@@ -104,11 +104,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth(): AuthContextValue {
   const ctx = useContext(AuthContext)
   if (!ctx) throw new Error('useAuth must be used within AuthProvider')
   return ctx
 }
-
-// Re-export getAccessToken so callers don't need to touch auth-token directly
-export { getAccessToken }

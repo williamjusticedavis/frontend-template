@@ -4,6 +4,7 @@ import { useTheme } from '@/context/theme-context'
 import { useAuth } from '@/context/auth-context'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { toast } from 'sonner'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -50,7 +51,7 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={logout}
+                onClick={() => logout().then(() => toast.success('Logged out successfully'))}
                 aria-label="Sign out"
                 title="Sign out"
               >

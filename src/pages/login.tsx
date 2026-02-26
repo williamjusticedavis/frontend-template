@@ -1,9 +1,17 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
+import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { useAuth } from '@/context/auth-context'
 import { ApiError } from '@/lib/query-client'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
@@ -11,39 +19,39 @@ export function LoginPage() {
   const { login } = useAuth()
   const navigate = useNavigate()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState<{ email?: string; password?: string; form?: string }>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [form, setForm] = useState({ email: '', password: '' })
+  const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({})
 
-  async function handleSubmit(e: FormEvent) {
+  const mutation = useMutation({
+    mutationFn: ({ email, password }: { email: string; password: string }) =>
+      login(email, password),
+    onSuccess: () => {
+      toast.success('Welcome back!')
+      navigate({ to: '/' })
+    },
+  })
+
+  function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    const next: typeof errors = {}
-    if (!email) next.email = 'Email is required'
-    if (!password) next.password = 'Password is required'
+    const next: typeof fieldErrors = {}
+    if (!form.email) next.email = 'Email is required'
+    if (!form.password) next.password = 'Password is required'
     if (Object.keys(next).length) {
-      setErrors(next)
+      setFieldErrors(next)
       return
     }
 
-    setIsSubmitting(true)
-    setErrors({})
-
-    try {
-      await login(email, password)
-      toast.success('Welcome back!')
-      navigate({ to: '/' })
-    } catch (err) {
-      if (err instanceof ApiError && err.status === 401) {
-        setErrors({ form: 'Invalid email or password' })
-      } else {
-        setErrors({ form: 'Something went wrong. Please try again.' })
-      }
-    } finally {
-      setIsSubmitting(false)
-    }
+    setFieldErrors({})
+    mutation.mutate(form)
   }
+
+  const serverError =
+    mutation.error instanceof ApiError && mutation.error.status === 401
+      ? 'Invalid email or password'
+      : mutation.error
+        ? 'Something went wrong. Please try again.'
+        : null
 
   return (
     <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4">
@@ -55,16 +63,16 @@ export function LoginPage() {
 
         <form onSubmit={handleSubmit} noValidate>
           <CardContent className="flex flex-col gap-4">
-            {errors.form && <p className="text-destructive text-sm">{errors.form}</p>}
+            {serverError && <p className="text-destructive text-sm">{serverError}</p>}
 
             <Input
               label="Email"
               type="email"
               placeholder="you@example.com"
               autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              error={errors.email}
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              error={fieldErrors.email}
             />
 
             <Input
@@ -72,15 +80,15 @@ export function LoginPage() {
               type="password"
               placeholder="••••••••"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              error={errors.password}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              error={fieldErrors.password}
             />
           </CardContent>
 
           <CardFooter className="flex flex-col gap-3">
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? 'Signing in…' : 'Sign in'}
+            <Button type="submit" className="w-full" disabled={mutation.isPending}>
+              {mutation.isPending ? 'Signing in…' : 'Sign in'}
             </Button>
 
             <p className="text-muted-foreground text-center text-sm">
