@@ -16,6 +16,13 @@ const stack = [
   { name: 'Lucide React', description: 'Icons', variant: 'outline' as const },
 ]
 
+const installationSetup = [
+  { step: '1', text: 'Clone the repository' },
+  { step: '2', text: 'Run bun install' },
+  { step: '3', text: 'Copy .env.example → .env and fill in values' },
+  { step: '4', text: 'Run bun run dev' },
+]
+
 export function AboutPage() {
   return (
     <div className="space-y-8">
@@ -53,12 +60,7 @@ export function AboutPage() {
           <CardTitle>Getting started</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          {[
-            { step: '1', text: 'Clone the repository' },
-            { step: '2', text: 'Run bun install' },
-            { step: '3', text: 'Copy .env.example → .env and fill in values' },
-            { step: '4', text: 'Run bun run dev' },
-          ].map(({ step, text }) => (
+          {installationSetup.map(({ step, text }) => (
             <div key={step} className="flex items-center gap-3">
               <span className="bg-primary text-primary-foreground flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold">
                 {step}
