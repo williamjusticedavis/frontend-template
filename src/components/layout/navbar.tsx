@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
-import { Moon, Sun, Zap } from 'lucide-react'
+import { LogOut, Moon, Sun, Zap } from 'lucide-react'
 import { useTheme } from '@/context/theme-context'
+import { useAuth } from '@/context/auth-context'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -11,6 +12,7 @@ const navLinks = [
 
 export function Navbar() {
   const { resolvedTheme, toggleTheme } = useTheme()
+  const { user, isAuthenticated, logout } = useAuth()
 
   return (
     <header className="border-border bg-background/80 sticky top-0 z-40 w-full border-b backdrop-blur-sm">
@@ -40,15 +42,43 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Theme toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
-        >
-          {resolvedTheme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-        </Button>
+        {/* Right side: auth + theme toggle */}
+        <div className="flex items-center gap-2">
+          {isAuthenticated ? (
+            <>
+              <span className="text-muted-foreground hidden text-sm sm:block">{user?.email}</span>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={logout}
+                aria-label="Sign out"
+                title="Sign out"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="ghost" size="sm">
+                  Sign in
+                </Button>
+              </Link>
+              <Link to="/register">
+                <Button size="sm">Sign up</Button>
+              </Link>
+            </>
+          )}
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {resolvedTheme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
+        </div>
       </nav>
     </header>
   )

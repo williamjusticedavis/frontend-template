@@ -1,14 +1,15 @@
 import { ApiError } from './query-client'
 import { config } from './config'
+import { getAccessToken } from './auth-token'
 
 const BASE_URL = config.apiUrl
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const token = getAccessToken()
   const response = await fetch(`${BASE_URL}${path}`, {
     headers: {
       'Content-Type': 'application/json',
-      // Add auth headers here, e.g.:
-      // Authorization: `Bearer ${getToken()}`,
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...options?.headers,
     },
     ...options,
